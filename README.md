@@ -70,10 +70,6 @@ Currently supports macOS. Builds with CMake and Clang. Cross-platform support (W
 - Select the samples scheme
 - Run the samples
 
-## Documentation
-
-*   [Manual](https://box3D.org/documentation/)
-
 ## Community
 
 *   [Discord](YOUR_DISCORD_LINK_HERE)
