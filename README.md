@@ -59,6 +59,17 @@ Box3D is in early development.
 
 Currently supports macOS. Builds with CMake and Clang. Cross-platform support (Windows, Linux) is planned for the future.
 
+## Building for Xcode
+- Install [CMake](https://cmake.org)
+- Add Cmake to the path in .zsh `export PATH="/Applications/CMake.app/Contents/bin:$PATH"`
+- cd to the cloned project
+- mkdir build
+- cd build
+- cmake -G Xcode ..
+- open Box3D.xcodeproj
+- Select the samples scheme
+- Run the samples
+
 ## Documentation
 
 *   [Manual](https://box3D.org/documentation/)
