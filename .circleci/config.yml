@@ -5,27 +5,65 @@ version: 2.1
 # Define a job to be invoked later in a workflow.
 # See: https://circleci.com/docs/jobs-steps/#jobs-overview & https://circleci.com/docs/configuration-reference/#jobs
 jobs:
-  say-hello:
-    # Specify the execution environment. You can specify an image from Docker Hub or use one of our convenience images from CircleCI's Developer Hub.
-    # See: https://circleci.com/docs/executor-intro/ & https://circleci.com/docs/configuration-reference/#executor-job
+  build-and-test:
     docker:
-      # Specify the version you desire here
-      # See: https://circleci.com/developer/images/image/cimg/base
-      - image: cimg/base:current
+      - image: ubuntu:22.04 # Use a specific, recent Ubuntu image.  Good for compatibility.
 
-    # Add steps to the job
-    # See: https://circleci.com/docs/jobs-steps/#steps-overview & https://circleci.com/docs/configuration-reference/#steps
+    working_directory: ~/repo
+
     steps:
-      # Checkout the code as the first step.
       - checkout
-      - run:
-          name: "Say hello"
-          command: "echo Hello, World!"
 
-# Orchestrate jobs using workflows
-# See: https://circleci.com/docs/workflows/ & https://circleci.com/docs/configuration-reference/#workflows
+      # Install Dependencies (GLFW Version)
+      - run:
+          name: Install Dependencies (GLFW)
+          command: |
+            apt-get update
+            apt-get install -y cmake g++ libglfw3-dev libglm-dev libx11-dev libxrandr-dev libxinerama-dev libxcursor-dev libxi-dev mesa-common-dev
+            #You could add libglew-dev if using glew
+            
+      # --- OR --- (Comment out the GLFW section above and uncomment this for SDL)
+      # - run:
+      #     name: Install Dependencies (SDL)
+      #     command: |
+      #       apt-get update
+      #       apt-get install -y cmake g++ libsdl2-dev libglm-dev libx11-dev mesa-common-dev
+      #       #You could add libglew-dev if using glew
+
+      # Restore Cache (if it exists)
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "CMakeLists.txt" }}
+            - v1-dependencies-  # Fallback to a previous cache if checksum doesn't match
+
+      # Build the Project
+      - run:
+          name: Configure CMake
+          command: cmake -B build -DCMAKE_BUILD_TYPE=Release  # Create a 'build' directory and configure
+
+      - run:
+          name: Build
+          command: cmake --build build --config Release # Build in Release mode
+
+      # Save Cache (for faster builds next time)
+      - save_cache:
+          paths:
+            - build  # Cache the build directory
+          key: v1-dependencies-{{ checksum "CMakeLists.txt" }}
+
+      # Run Tests (Replace 'Box3D_Testbed' with your actual executable name)
+      - run:
+          name: Run Tests
+          command: |
+            cd build
+             #For GUI based apps, you might need xvfb-run
+            xvfb-run ./Box3D_Testbed # Assuming your testbed is built and named this
+          
+          #Optional working test command, may not work
+          #command: ./build/Box3D_Testbed
+
+
 workflows:
-  say-hello-workflow: # This is the name of the workflow, feel free to change it to better match your workflow.
-    # Inside the workflow, you define the jobs you want to run.
+  build-test-workflow:
     jobs:
-      - say-hello
+      - build-and-test
