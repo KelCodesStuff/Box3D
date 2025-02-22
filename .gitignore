@@ -1,0 +1,54 @@
+# CLion-specific
+.idea/
+
+# CMake build directories (ESSENTIAL)
+build/
+Build/
+out/
+bin/
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+install_manifest.txt
+compile_commands.json  # Optional, but often helpful
+
+# General C/C++ build artifacts
+*.d
+*.o
+*.obj
+*.elf
+*.ilk
+*.map
+*.exp
+*.gch
+*.pch
+*.lib
+*.a
+*.la
+*.lo
+*.dll
+*.so
+*.so.*
+*.dylib
+*.exe
+*.out
+*.app
+# *.i*86   <-  Removed: potentially too broad.  Add back if *needed*.
+# *.x86_64  <-  Removed: potentially too broad.  Add back if *needed*.
+*.hex
+*.dSYM/
+*.su
+*.idb
+*.pdb
+
+# OS-Generated Files (Good to include)
+*.DS_Store
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Editor Swap Files (Good to include)
+*~
+*.swp
+*.swo
+*.bak
