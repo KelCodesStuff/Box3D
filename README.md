@@ -87,9 +87,9 @@ Box3D is a 3D physics engine built as a learning project, forked from the well k
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details. (Box2D itself is under the zlib license, which is very permissive. You should check the Box2D license if you are basing your work on it.)
+This project uses the [MIT License](LICENSE).
 
 ## Acknowledgements
 
-*   **Erin Catto:**  The creator of Box2D, whose work inspired this project.
-*   **The Box2D Community:**  For providing a wealth of information and resources.
+*   Erin Catto:  The creator of Box2D, whose work inspired this project.
+*   The Box2D Community:  For providing a wealth of information and resources.
