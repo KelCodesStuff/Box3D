@@ -21,6 +21,9 @@ jobs:
         with:
           submodules: recursive # Checkout submodules if any
 
+      - name: Install Wayland Dependencies # Install wayland-scanner
+        run: sudo apt-get update && sudo apt-get install -y libwayland-dev wayland-protocols
+
       - name: Create Build Directory
         # Explicitly create the build directory.  This can prevent some issues.
         run: mkdir -p ${{github.workspace}}/build
