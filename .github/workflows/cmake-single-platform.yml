@@ -44,7 +44,7 @@ jobs:
 
       - name: Upload Artifacts (Optional)
         # Upload build artifacts (e.g., binaries) if needed.
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: build-artifacts
           path: ${{github.workspace}}/build/* # Customize the path
