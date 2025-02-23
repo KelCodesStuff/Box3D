@@ -1,4 +1,5 @@
-# Box3D: A 3D Physics Engine for Game Development
+# Box3D 
+### A 3D Physics Engine for Game Development
 
 [![Build and Test](https://github.com/KelCodesStuff/Box3D/actions/workflows/build.yml/badge.svg?branch=main)](https://github.com/KelCodesStuff/Box3D/actions/workflows/build.yml)
 
