@@ -18,64 +18,63 @@ Box3D is a 3D physics engine built as a learning project, forked from the well k
 ## Features (Current and Planned)
 
 *   **Rigid Body Dynamics:**
-    *   3D vectors, matrices, and quaternions for representing position, orientation, and transformations.
+    *   3D vectors, matrices, and quaternions (using GLM) for representing position, orientation, and transformations.
     *   Dynamic, static, and kinematic bodies.
     *   Linear and angular velocity and acceleration.
     *   Application of forces and impulses.
 
-
-* **Collision Detection:**
+*   **Collision Detection:**
     *   **Broadphase:** Dynamic AABB tree for efficient collision culling.
     *   **Narrowphase:**
         *   Sphere-Sphere
         *   Sphere-AABB
         *   AABB-AABB
         *   Box-Box (Oriented Bounding Boxes) using Separating Axis Theorem (SAT).
-        *   Convex Hull-Convex Hull (using GJK and EPA - **Planned/In Progress**).
-    *   Contact manifold generation (contact point, normal, penetration depth).
 
-  
-* **Constraint Solving:**
+*   **Constraint Solving:**
     *   Iterative constraint solver (Sequential Impulses - based on Box2D's approach).
     *   **Joints:**
-        *   Distance Joint (3D)
-        *   Revolute Joint (3D)
-        *   Prismatic Joint (3D)
-        *   More joint types (Planned)
-
+        *   Distance Joint (3D) - *In progress*
+        *   Revolute Joint (3D) - *In progress*
+        *   Prismatic Joint (3D) - *In progress*
 
 *   **Integration:**
     *   Euler, Verlet, and Runge-Kutta (RK4) integrators (selectable).
 
+* **Testbed:**
+    * Basic 3D visualization using SDL2.
+    * Interactive controls for creating and manipulating bodies (planned).
+    * Uses a `Box3D::DebugDraw` class for rendering the simulation state.
 
-*   **Testbed:**
-    *   Basic 3D visualization using OpenGL (and GLFW or SDL).
-    *   Interactive controls for creating and manipulating bodies.
+## Roadmap (Planned Features)
 
-
-* **Planned:**
-    *	Continuous Collision Detection (CCD)
-    *	Restitution (Bounciness)
-    *	Friction
-    *	Sleeping (Deactivating bodies that are at rest)
-    *	Raycasting
+*   Convex Hull-Convex Hull collision detection (using GJK and EPA).
+*   More joint types.
+*   Continuous Collision Detection (CCD).
+*   Restitution (Bounciness).
+*   Friction.
+*   Sleeping (Deactivating bodies that are at rest).
+*   Raycasting.
+*   Interactive controls
 
 ## Dependencies
 
-*   CMake (3.10 or higher): For generating build files.
-*   C++ Compiler (C++11 or higher):  A modern C++ compiler (e.g., GCC, Clang, MSVC).
-*   OpenGL: For 3D visualization.
+*   CMake (3.17 or higher)
+*   C++ Compiler (C++17 or higher): (e.g., GCC, Clang, MSVC).
+*   SDL2: For 3D visualization and input.
+*   GLM (OpenGL Mathematics): For 3D vector, matrix, and quaternion math.
 
-## Building and Running for Xcode
+## Build Instructions for Xcode
 
 1. Install CMake 
-2. Clone the Repository:
+2. Install GLM
+2. Clone the Repository
     ```bash
     git clone https://github.com/KelCodesStuff/Box3D
     cd Box3D
     ```
 
-3.  Generate Build Files (CMake):
+3.  Generate Build Files with CMake
     ```bash
     mkdir build
     cd build
