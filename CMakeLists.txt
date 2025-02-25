@@ -2,21 +2,38 @@
 include(FetchContent)
 include(CMakeDependentOption)
 
-project(box2d
+project(box3d
 	VERSION 3.1.0
-	DESCRIPTION "A 2D physics engine for games"
-	HOMEPAGE_URL "https://box2d.org"
+	DESCRIPTION "A 3D physics engine for game development"
+	HOMEPAGE_URL "https://box3d.games"
 	LANGUAGES C CXX
 )
 
-# stuff to help debug cmake
-# message(STATUS "cmake tool chain: ${CMAKE_TOOLCHAIN_FILE}")
-# message(STATUS "cmake source dir: ${CMAKE_SOURCE_DIR}")
-# message(STATUS "library postfix: ${CMAKE_DEBUG_POSTFIX}")
+# --- Xcode and Deployment Target Configuration ---
+
+if(APPLE)
+	# Set the minimum macOS deployment target.  Choose a modern version.
+	set(CMAKE_OSX_DEPLOYMENT_TARGET "10.15" CACHE STRING "Minimum macOS deployment target")
+
+	# Explicitly set architectures (good practice).
+	set(CMAKE_OSX_ARCHITECTURES "arm64;x86_64" CACHE STRING "macOS architectures")
+
+	# You almost always want to generate an Xcode project on macOS.
+	set(CMAKE_GENERATOR "Xcode" CACHE STRING "CMake generator")
+endif()
+
+# --- Debugging Output (Optional, but helpful) ---
 message(STATUS "CMake C compiler: ${CMAKE_C_COMPILER_ID}")
 message(STATUS "CMake C++ compiler: ${CMAKE_CXX_COMPILER_ID}")
 message(STATUS "CMake system name: ${CMAKE_SYSTEM_NAME}")
 message(STATUS "CMake host system processor: ${CMAKE_HOST_SYSTEM_PROCESSOR}")
+if(APPLE)
+	message(STATUS "CMAKE_OSX_DEPLOYMENT_TARGET: ${CMAKE_OSX_DEPLOYMENT_TARGET}")
+	message(STATUS "CMAKE_OSX_ARCHITECTURES: ${CMAKE_OSX_ARCHITECTURES}")
+	message(STATUS "XCODE_VERSION: ${XCODE_VERSION}") # Add this line to check detected xcode
+endif()
+
+# --- End Xcode Configuration ---
 
 # static link
 set(CMAKE_MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>")
